@@ -58,6 +58,7 @@ public class FacturaService {
 
         factura.setNumeroFactura(requestFacturaDto.getNumeroFactura());
 
+
         for(RequestDetalleFacturaDto detalleFacturaDto: requestFacturaDto.getDetalleFactura())
         {
             Producto producto = productRepository.findById(detalleFacturaDto.getIdProducto()).orElseThrow(
@@ -67,13 +68,14 @@ public class FacturaService {
             subTotalFactura = subTotalFactura.add(totalProducto);
 
             DetalleFactura detalleFactura = new DetalleFactura();
-            detalleFactura.setId(detalleFacturaDto.getIdProducto());
+            detalleFactura.setIdProducto(detalleFacturaDto.getIdProducto());
             detalleFactura.setPrecio(producto.getPrecio());
             detalleFactura.setCantidad(detalleFacturaDto.getCantidad());
             detalleFactura.setTotal(totalProducto);
             detalleFactura.setFactura(factura);
 
             detalles.add(detalleFactura);
+            System.out.println(detalleFactura);
         }
 
         factura.setDetalleFactura(detalles);

@@ -20,6 +20,7 @@ public class FacturaController {
 
     @PostMapping
     public ResponseFacturaDto save(@RequestBody RequestFacturaDto requestFacturaDto){
+        System.out.println(requestFacturaDto);
         return facturaService.save(requestFacturaDto);
     }
 
